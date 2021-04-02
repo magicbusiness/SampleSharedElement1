@@ -1,0 +1,18 @@
+To use Share Elements
+1. Add Item at themes <item name="android:windowActivityTransitions">true</item>
+2. Make 2 fragment then implement navigation file in activity
+3. add command this from start shared element
+    val share = FragmentNavigatorExtras(sample_image to "imageBig") -> from id to destination transition name
+    findNavController().navigate(R.id.mainFrag_to_imageFrag, null, null, share)
+
+4. add command this from end shared element
+    override fun onCreate(savedInstanceState: Bundle?)
+    {
+        super.onCreate(savedInstanceState)
+
+        val animations_open = TransitionInflater.from(requireContext()).inflateTransition(android.R.transition.move)
+        val animations_close = TransitionInflater.from(requireContext()).inflateTransition(android.R.transition.move)
+
+        sharedElementEnterTransition = animations_open
+        sharedElementReturnTransition = animations_close
+    }
